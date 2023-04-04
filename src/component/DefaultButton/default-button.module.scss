@@ -1,0 +1,7 @@
+.default-btn {
+  backdrop-filter: blur(41.5px);
+
+  &:disabled {
+    background: rgba($color: white, $alpha: 0.5);
+  }
+}
