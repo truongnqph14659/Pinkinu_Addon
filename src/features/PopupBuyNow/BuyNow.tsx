@@ -3,30 +3,29 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Timer from './Timer';
 import style from './buynow.module.scss';
+import { useModal } from 'src/hooks';
+import ExchangeForm from './ExchangeForm';
 
-const deadline = 'April, 5, 2023';
+const deadline = 'April, 6, 2023';
 
 const Buynow = () => {
+  const { showModal } = useModal();
+
   return (
-    <div className="mx-3  text-black lg:mx-0 lg:min-w-[414px]">
-      <button className="w-full rounded-lg bg-[#000] p-3 font-bold text-white">
-        BUY NOW!
-      </button>
-      <div className="my-5 w-full rounded-md bg-slate-100 p-5 text-center font-bold">
+    <div className="mx-3 text-black sm:min-w-[414px] lg:mx-0">
+      <div
+        className={` ${style.boxBuyNow} my-5 w-full p-5 text-center  font-bold`}
+      >
         <div className="flex justify-between px-0 sm:px-3">
           <img
-            src="https://lovehateinu.com/assets/images/dark-logo.svg"
+            src="images/icons/icon-token-pinkinu.png"
             alt=""
             className="h-6 w-6"
           />
           <p className="font-bold">
             1$ LHINU <span className="mx-2">=</span> 0.09345 USDT
           </p>
-          <img
-            src="https://lovehateinu.com/assets/images/t-icon.svg"
-            alt=""
-            className="h-6 w-6"
-          />
+          <img src="images/icons/usdt.png" alt="" className="h-6 w-6" />
         </div>
         <p className="my-5">
           USDT Raised $2,598,184.43 <span className="px-1">/</span>
@@ -56,27 +55,39 @@ const Buynow = () => {
             disabled={true}
           />
         </Box>
-        <p className="my-2">Your purchased $LHINU = 3,294</p>
+        <p className="my-1 text-[#f0749b]">Launch Price</p>
+        <p className="mb-4"> $LHINU = $0,2943453 USDT</p>
+        {/* <button className=" mt-3 rounded-[50px] bg-[#f0749b] px-4 py-2 text-sm font-bold text-white">
+          BUY NOW
+        </button> */}
         <div>
-          <div className={style.btnBuyCoin}>
-            <img
-              src="https://lovehateinu.com/assets/images/metamask.svg"
-              alt=""
-              className="h-7 w-7"
-            />
-            <p>BUY $LHINU WITH ETH</p>
+          <div
+            className={style.btnBuyCoin}
+            onClick={() =>
+              showModal({
+                content: <ExchangeForm />,
+                hiddenCloseBtn: false,
+                maxWidth: 'sm',
+              })
+            }
+          >
+            <img src="images/icons/bnb.svg" alt="" className="h-7 w-7" />
+            <div className="w-full">
+              <p>Buy $LHINU with BNB</p>
+            </div>
           </div>
-          <div className={`${style.btnBuyCoin} my-2`}>
-            <img
-              src="https://lovehateinu.com/assets/images/metamask.svg"
-              alt=""
-              className="h-7 w-7"
-            />
-            <p>BUY $LHINU WITH USDT</p>
+          <div
+            className={`${style.btnBuyCoin} my-2 `}
+            onClick={() => showModal({ content: <ExchangeForm /> })}
+          >
+            <img src="images/icons/usdt.png" alt="" className="h-7 w-7" />
+            <div className="w-full">
+              <p>Buy $LHINU with USDT</p>
+            </div>
           </div>
           <p className="my-3">Next Stage: $LHINU = 0.0342 USDT</p>
-          <button className="w-[70%] rounded-3xl bg-[#f0749b] py-2 text-[#fff]">
-            Buy with BNB
+          <button className="rounded-3xl bg-[#f0749b] px-5 py-2 text-[#fff] hover:bg-[#ce4ec2]">
+            Buy with ETH
           </button>
         </div>
       </div>

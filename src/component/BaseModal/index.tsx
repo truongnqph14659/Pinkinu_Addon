@@ -47,30 +47,33 @@ const BaseModal: React.FC<BaseModalProps> = ({
       sx={theme => ({
         [theme.breakpoints.down('sm')]: {
           '.MuiDialog-paper.MuiDialog-paperScrollBody': {
-            maxWidth: 'calc(100% - 48px)',
+            // maxWidth: 'calc(100% - 48px)',
           },
         },
         '.MuiDialog-paper': {
-          margin: '16px',
+          // margin: '16px',
           width: 'calc(100% - 48px)',
           borderRadius: '10px',
         },
-        background: 'rgba(226,88,132,0.5)',
+        background: 'rgba(255, 255,255,0.1)',
         backdropFilter: 'blur(5px)',
-        '.MuiPaper-root': { background: 'rgba(255,255,255,255)' },
+        '.MuiPaper-root': { background: '#ffff' },
         ...(sx as unknown as object),
         ...(isTransparent ? sxTransparent : {}),
       })}
     >
       {!hiddenCloseBtn && (
-        <CloseIcon
-          className="absolute right-3 top-3 z-10 cursor-pointer font-bold text-white md:!h-8 md:!w-8"
-          onClick={handleClose}
-        />
+        <div className="flex h-12 w-full items-center justify-between bg-[#f0749b] px-4">
+          <p className="font-bold text-white">Exchange</p>
+          <CloseIcon
+            className="z-10 cursor-pointer font-bold text-white md:!h-8 md:!w-8"
+            onClick={handleClose}
+          />
+        </div>
       )}
       <DialogContent
         sx={theme => ({
-          paddingTop: '30px',
+          // paddingTop: '0px',
           color: 'white',
           [theme.breakpoints.up('sm')]: {
             padding: '32px 40px',
