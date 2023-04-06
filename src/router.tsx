@@ -1,7 +1,7 @@
 import { Navigate, RouteObject } from 'react-router-dom';
 
 import Dashboard from './layout/DashboardLayout';
-import Buynow from './features/PopupBuyNow/BuyNow';
+import BuyNow from './features/PopupBuyNow/BuyNow';
 
 export const routes: RouteObject[] = [
   {
@@ -11,7 +11,7 @@ export const routes: RouteObject[] = [
       { path: '', element: <Navigate to="/buy-now" replace /> },
       {
         path: 'buy-now',
-        element: <Buynow />,
+        element: <BuyNow />,
       },
     ],
   },
