@@ -70,7 +70,7 @@ const WalletNotification: FC<WalletNotificationProps> = ({
 }) => {
   return (
     <BaseModal open={open} handleClose={handleClose} {...rest}>
-      <div className="flex flex-col items-center gap-6">
+      <div className="flex flex-col items-center gap-6 text-black">
         <NotificationIcon notificationType={type} className="h-20 w-20" />
         <div className="text-center">
           <h1 className="mb-3 text-2xl font-bold md:text-3xl">
