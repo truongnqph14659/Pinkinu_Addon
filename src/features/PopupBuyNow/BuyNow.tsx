@@ -6,7 +6,7 @@ import style from './buynow.module.scss';
 import { useModal } from 'src/hooks';
 import ExchangeForm from './ExchangeForm';
 
-const deadline = 'April, 6, 2023';
+const deadline = 'April, 8, 2023';
 
 const Buynow = () => {
   const { showModal } = useModal();

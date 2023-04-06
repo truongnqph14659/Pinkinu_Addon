@@ -63,7 +63,7 @@ const BaseModal: React.FC<BaseModalProps> = ({
       })}
     >
       {!hiddenCloseBtn && (
-        <div className="flex h-12 w-full items-center justify-between bg-[#f0749b] px-4">
+        <div className="flex h-[70px] w-full items-center justify-between bg-[#f0749b] px-4">
           <p className="font-bold text-white">Exchange</p>
           <CloseIcon
             className="z-10 cursor-pointer font-bold text-white md:!h-8 md:!w-8"
