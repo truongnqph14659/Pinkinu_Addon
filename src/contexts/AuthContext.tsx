@@ -13,6 +13,7 @@ import {
   getAccessTokenCookie,
   removeTokenCookies,
   getDefaultNetworkJson,
+  bigNumberToNumber,
 } from 'src/utils';
 
 export interface User {
@@ -38,6 +39,7 @@ export interface AuthContextInterface {
   requireNetwork?: () => Promise<void>;
   setAuthState?: React.Dispatch<React.SetStateAction<AuthStateInterface>>;
   switchNetworks?: (hexChainId: string) => Promise<void>;
+  getBalance?: (address: string) => Promise<number>;
   chainId?: number;
 }
 
@@ -86,7 +88,7 @@ export const AuthProvider: React.FC<CommonReactNodeProps> = ({ children }) => {
     try {
       await library.provider.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: APP_CONFIG.blockchain.ethereumHexChainId }],
+        params: [{ chainId: APP_CONFIG.blockchain.firstHexChainId }],
       });
     } catch (switchError) {
       // 4902 error code indicates the chain is missing on the wallet
@@ -104,7 +106,7 @@ export const AuthProvider: React.FC<CommonReactNodeProps> = ({ children }) => {
   };
 
   const switchNetworks = async (
-    chainId = APP_CONFIG.blockchain.ethereumHexChainId
+    chainId = APP_CONFIG.blockchain.firstHexChainId
   ) => {
     try {
       await library.provider.request({
@@ -133,11 +135,15 @@ export const AuthProvider: React.FC<CommonReactNodeProps> = ({ children }) => {
   const requireAccount = async () => {
     return (
       account ||
-      ((await library.provider.request({
+      ((await library?.provider?.request({
         method: 'eth_requestAccounts',
         params: [],
       })) as string)
     );
+  };
+
+  const getBalance = async (address: string) => {
+    return bigNumberToNumber((await library?.getBalance(address)) || 0);
   };
 
   // Helpers
@@ -275,6 +281,7 @@ export const AuthProvider: React.FC<CommonReactNodeProps> = ({ children }) => {
         requireNetwork,
         setAuthState,
         switchNetworks,
+        getBalance,
         chainId,
       }}
     >

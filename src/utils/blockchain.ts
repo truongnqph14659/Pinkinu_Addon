@@ -1,4 +1,4 @@
-import { APP_CONFIG } from "src/config";
+import { APP_CONFIG } from 'src/config';
 
 const SUPPORTED_NETWORKS = [
   {
@@ -18,11 +18,11 @@ const SUPPORTED_NETWORKS = [
 
 export const getDefaultNetworkJson = () => {
   const network = SUPPORTED_NETWORKS.find(network => {
-    return network.chainId === APP_CONFIG.blockchain.ethereumChainId;
+    return network.chainId === APP_CONFIG.blockchain.firstChainId;
   });
 
   return {
     ...network,
-    chainId: APP_CONFIG.blockchain.ethereumHexChainId,
+    chainId: APP_CONFIG.blockchain.firstHexChainId,
   };
 };

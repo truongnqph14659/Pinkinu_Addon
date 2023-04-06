@@ -1,17 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Select, FormControl, MenuItem, Box } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-interface dataCoins {
-  id: string;
-  name: string;
-  image: string;
-}
-// interface props {
-//   dataCoins: dataCoins[];
-//   valueFromDefault: string;
-//   getCoin: (coin: string) => void;
-//   handleKeyPress: (e) => void;
-// }
+import { useConnectWallet } from 'src/hooks';
 
 const dataCoins = [
   {
@@ -19,11 +9,6 @@ const dataCoins = [
     name: 'USDT',
     image: '/images/icons/usdt.png',
   },
-  // {
-  //   id: '002',
-  //   name: 'BNB',
-  //   image: '/images/general/BNB.png',
-  // },
   {
     id: '003',
     name: 'ETH',
@@ -32,7 +17,16 @@ const dataCoins = [
 ];
 
 const ExchangeForm = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { getAccount, getBalance, isConnected, chainId } = useConnectWallet();
+  const [balance, setBalance] = useState(0);
+
+  useEffect(() => {
+    if (isConnected) {
+      getAccount().then(address => {
+        getBalance(address).then(balance => setBalance(balance));
+      });
+    }
+  }, [chainId]);
 
   const [coinSelected, setCoinSelected] = useState('ETH');
 
@@ -40,7 +34,7 @@ const ExchangeForm = () => {
     setCoinSelected(e);
   };
 
-  const handleKeyPress = (event: any) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const keyCode = event.keyCode || event.which;
     const keyValue = String.fromCharCode(keyCode);
     const checkDot = keyCode === 190 ? '190' : keyValue;
@@ -55,7 +49,7 @@ const ExchangeForm = () => {
       <div className="flex items-center justify-center gap-2 border-b-2 border-[#f0749b] px-3 pb-4 md:gap-6">
         <img src="images/icons/eth-logo.png" alt="" className="h-6 w-6" />
         <p className="text-xs font-bold text-black sm:text-lg">
-          ETH balance: <span>0.0008723048712908347</span>
+          ETH balance: <span>{balance}</span>
         </p>
       </div>
       <div className="flex items-center justify-between">

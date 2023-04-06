@@ -110,7 +110,7 @@ export const formatAddress = (address: string) =>
   address && address.toLocaleLowerCase();
 
 export const isValidNetwork = (chainId: number) =>
-  [APP_CONFIG.blockchain.ethereumChainId, APP_CONFIG.blockchain.binanceChainId].includes(chainId);
+  [APP_CONFIG.blockchain.firstChainId, APP_CONFIG.blockchain.secondChainId].includes(chainId);
 
 export const bigNumberToNumber = (bigNumber: BigNumber) => {
   return parseFloat(utils.formatEther(bigNumber));
@@ -154,7 +154,6 @@ const getMetamaskMessageBreakpoint = string => {
 
   return existSymbol && string.indexOf(existSymbol);
 };
-
 
 export const toTwoDigit = (number: number) => {
   return ('0' + number).slice(-2);
@@ -212,6 +211,6 @@ export const addHours = (startTime: Date, hours: number) => {
 
 export const dateShortFormat = (timestamp: number | string) => {
   const date = new Date(timestamp);
-  return `${date.getUTCFullYear()}-${date.getUTCMonth() + 1 < 10 ? '0' : ''}${date.getUTCMonth() + 1
-    }-${date.getUTCDate() < 10 ? '0' : ''}${date.getUTCDate()}`;
+
+  return `${date.getUTCFullYear()}-${date.getUTCMonth() + 1 < 10 ? '0' : ''}${date.getUTCMonth() + 1}-${date.getUTCDate() < 10 ? '0' : ''}${date.getUTCDate()}`;
 };

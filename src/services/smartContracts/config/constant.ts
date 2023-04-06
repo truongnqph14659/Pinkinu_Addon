@@ -1,6 +1,6 @@
 export const ADDRESSES = {
-  busd: process.env.REACT_APP_BUSD_ADDRESS,
-  bearAdmin: process.env.REACT_APP_BEAR_ADMIN_ADDRESS,
-  bearNft: process.env.REACT_APP_BEAR_NFT_ADDRESS,
-  marketplace: process.env.REACT_APP_MARKETPLACE_ADDRESS,
+  pinkInuPHO: process.env.REACT_APP_PINK_INU_PHO_ADDRESS,
+  bnb: process.env.REACT_APP_BNB_ADDRESS,
+  eth: process.env.REACT_APP_ETH_ADDRESS,
+  usdt: process.env.REACT_APP_USDT_ADDRESS,
 };

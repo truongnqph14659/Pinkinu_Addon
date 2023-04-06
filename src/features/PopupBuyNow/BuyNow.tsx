@@ -1,4 +1,3 @@
-/* eslint-disable eqeqeq */
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Timer from './Timer';
@@ -6,11 +5,11 @@ import style from './buynow.module.scss';
 import { useConnectWallet, useModal } from 'src/hooks';
 import ExchangeForm from './ExchangeForm';
 import { useEffect } from 'react';
-import { APP_CONFIG } from 'src/config';
+import { APP_CONFIG, FIRST_TOKEN, SECOND_TOKEN } from 'src/config';
 import { isValidNetwork } from 'src/utils';
 
 const deadline = 'April, 8, 2023';
-const ethereumChainId = APP_CONFIG.blockchain.ethereumChainId;
+const secondChainId = APP_CONFIG.blockchain.secondChainId;
 
 const Buynow = () => {
   const { showModal } = useModal();
@@ -78,24 +77,44 @@ const Buynow = () => {
           <div>
             <div
               className={style.btnBuyCoin}
-              onClick={() =>
-                showModal({
-                  content: <ExchangeForm />,
-                  hiddenCloseBtn: false,
-                  maxWidth: 'sm',
-                })
-              }
+              onClick={() => {
+                if (isValidNetwork(chainId)) {
+                  showModal({
+                    content: <ExchangeForm />,
+                    hiddenCloseBtn: false,
+                    maxWidth: 'sm',
+                  });
+                } else {
+                  switchNetworks(APP_CONFIG.blockchain.firstHexChainId);
+                }
+              }}
             >
-              <img src="images/icons/bnb.svg" alt="" className="h-7 w-7" />
+              <img
+                src={`images/icons/${
+                  chainId === secondChainId ? 'bnb' : 'eth'
+                }.svg`}
+                alt=""
+                className="h-7 w-7"
+              />
               <div className="w-full">
                 <p>
-                  Buy $PINKINU with {chainId == ethereumChainId ? 'ETH' : 'BNB'}
+                  Buy $PINKINU with {chainId === secondChainId ? SECOND_TOKEN : FIRST_TOKEN}
                 </p>
               </div>
             </div>
             <div
               className={`${style.btnBuyCoin} my-2 `}
-              onClick={() => showModal({ content: <ExchangeForm /> })}
+              onClick={() => {
+                if (isValidNetwork(chainId)) {
+                  showModal({
+                    content: <ExchangeForm />,
+                    hiddenCloseBtn: false,
+                    maxWidth: 'sm',
+                  });
+                } else {
+                  switchNetworks(APP_CONFIG.blockchain.firstHexChainId);
+                }
+              }}
             >
               <img src="images/icons/usdt.png" alt="" className="h-7 w-7" />
               <div className="w-full">
@@ -107,13 +126,13 @@ const Buynow = () => {
               className="rounded-3xl bg-[#f0749b] px-5 py-2 text-[#fff] hover:bg-[#ce4ec2]"
               onClick={() =>
                 switchNetworks(
-                  chainId == ethereumChainId
-                    ? APP_CONFIG.blockchain.binanceHexChainId
-                    : APP_CONFIG.blockchain.ethereumHexChainId
+                  chainId === secondChainId
+                    ? APP_CONFIG.blockchain.secondHexChainId
+                    : APP_CONFIG.blockchain.firstHexChainId
                 )
               }
             >
-              Buy with {chainId == ethereumChainId ? 'BNB' : 'ETH'}
+              Buy with {chainId === secondChainId ? FIRST_TOKEN : SECOND_TOKEN}
             </button>
           </div>
         )}
