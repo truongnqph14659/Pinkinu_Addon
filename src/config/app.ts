@@ -9,10 +9,10 @@ export const APP_CONFIG = {
     socketBaseUrl: process.env.REACT_APP_SOCKET_URL,
   },
   blockchain: {
-    ethereumChainId: 1,
-    ethereumHexChainId: `0x${(1).toString(16)}`,
-    binanceChainId: 56,
-    binanceHexChainId: `0x${(56).toString(16)}`,
+    firstChainId: 80001,
+    firstHexChainId: `0x${(80001).toString(16)}`,
+    secondChainId: 56,
+    secondHexChainId: `0x${(56).toString(16)}`,
     metamaskDeepLink: process.env.REACT_APP_METAMASK_DEEP_LINK,
     prefixSignature:
       process.env.REACT_APP_PREFIX_SIGNATURE ||
@@ -38,3 +38,14 @@ export const CONSTANTS = {
   PASSWORD_REGEX: /^\S*$/,
   TIMING_BANNER_KEY: 'timingBanner',
 };
+
+export const OWN_TOKEN = 'PINKINU';
+export const FIRST_TOKEN = 'ETH';
+export const SECOND_TOKEN = 'BNB';
+export const THIRD_TOKEN = 'USDT';
+
+export enum Units {
+  Bnb = 'bnb',
+  Eth = 'eth',
+  Usdt = 'usdt',
+}
