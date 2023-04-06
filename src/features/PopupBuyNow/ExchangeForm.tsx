@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Select, FormControl, MenuItem, Box } from '@mui/material';
-import ErrorSharpIcon from '@mui/icons-material/ErrorSharp';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 interface dataCoins {
   id: string;
   name: string;
@@ -19,11 +19,11 @@ const dataCoins = [
     name: 'USDT',
     image: '/images/icons/usdt.png',
   },
-  {
-    id: '002',
-    name: 'BNB',
-    image: '/images/general/BNB.png',
-  },
+  // {
+  //   id: '002',
+  //   name: 'BNB',
+  //   image: '/images/general/BNB.png',
+  // },
   {
     id: '003',
     name: 'ETH',
@@ -33,6 +33,13 @@ const dataCoins = [
 
 const ExchangeForm = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+  const [coinSelected, setCoinSelected] = useState('ETH');
+
+  const getCoin = e => {
+    setCoinSelected(e);
+  };
+
   const handleKeyPress = (event: any) => {
     const keyCode = event.keyCode || event.which;
     const keyValue = String.fromCharCode(keyCode);
@@ -42,6 +49,7 @@ const ExchangeForm = () => {
       event.preventDefault();
     }
   };
+
   return (
     <div>
       <div className="flex items-center justify-center gap-2 border-b-2 border-[#f0749b] px-3 pb-4 md:gap-6">
@@ -58,8 +66,8 @@ const ExchangeForm = () => {
               <Select
                 labelId="select-label"
                 id="demo-simple-select"
-                defaultValue={'ETH'}
-                value={'ETH'}
+                defaultValue={coinSelected}
+                value={coinSelected}
                 sx={{
                   color: 'black',
                   '& fieldset': {
@@ -77,9 +85,9 @@ const ExchangeForm = () => {
                   },
                   borderRadius: '7px',
                 }}
-                // onChange={event => {import ErrorSharpIcon from '@mui/icons-material/ErrorSharp';
-                //   getCoin(event.target.value);
-                // }}
+                onChange={event => {
+                  getCoin(event.target.value);
+                }}
               >
                 {dataCoins.map(coin => (
                   <MenuItem value={coin.name} key={coin.id}>
@@ -105,15 +113,15 @@ const ExchangeForm = () => {
           <input
             type="number"
             placeholder="0"
-            className=" w-full  rounded-[5px] bg-[#F6F6F6] py-3 pl-[11px] pr-7 font-bold  text-[#f0749b] placeholder:text-[#f0749b] focus:outline-none md:py-3.5"
+            className=" w-full rounded-[5px] bg-[#F6F6F6] py-3 pl-[11px] pr-9 font-bold  text-[#f0749b] placeholder:text-[#f0749b] focus:outline-none md:py-3.5 md:text-[18px]"
             onKeyDown={handleKeyPress}
           />
-          <ErrorSharpIcon
+          <InfoOutlinedIcon
             color="error"
-            className="absolute right-[90px] z-10 sm:right-28 "
+            className="absolute right-[95px] z-10  sm:right-[118px] "
           />
         </div>
-        <button className="rounded-md bg-[#f0749b] px-2 font-bold text-white md:px-3">
+        <button className="rounded-md bg-[#f0749b] px-2 font-bold text-white hover:bg-[#FF1C7B] md:px-3">
           MAX
         </button>
       </div>
@@ -134,7 +142,7 @@ const ExchangeForm = () => {
       <input
         type="number"
         placeholder="0"
-        className=" w-full  rounded-[5px] bg-[#F6F6F6] py-3 pl-[11px] pr-7 font-bold  text-black placeholder:text-black focus:outline-none md:py-3.5"
+        className=" w-full rounded-[5px] bg-[#F6F6F6] py-3 pl-[11px] pr-7 font-bold text-black  placeholder:text-black focus:outline-none md:py-3.5 md:text-[18px]"
         disabled
       />
       <p className="py-2 text-sm text-[#FF1C7B] md:text-base">
