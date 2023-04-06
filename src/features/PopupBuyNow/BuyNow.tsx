@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 const deadline = 'April, 8, 2023';
 const secondChainId = APP_CONFIG.blockchain.secondChainId;
 
-const Buynow = () => {
+const BuyNow = () => {
   const { t } = useTranslation();
   const { showModal } = useModal();
   const { isConnected, connect, switchNetworks, chainId } = useConnectWallet();
@@ -108,7 +108,7 @@ const Buynow = () => {
               />
               <div className="w-full">
                 <p>
-                  {t('buy_$PINKINU_with')}
+                  {t('buy_pinkInu_with')}
                   {chainId === secondChainId ? SECOND_TOKEN : FIRST_TOKEN}
                 </p>
               </div>
@@ -129,7 +129,7 @@ const Buynow = () => {
             >
               <img src="images/icons/usdt.png" alt="" className="h-7 w-7" />
               <div className="w-full">
-                <p>{t('buy_$PINKINU_with_usdt')}</p>
+                <p>{t('buy_pinkInu_with_usdt')}</p>
               </div>
             </div>
             <p className="my-3">
@@ -155,4 +155,4 @@ const Buynow = () => {
   );
 };
 
-export default Buynow;
+export default BuyNow;
