@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Timer from './Timer';
@@ -31,7 +32,7 @@ const Buynow = () => {
             className="h-6 w-6"
           />
           <p className="font-bold">
-            1$ LHINU <span className="mx-2">=</span> 0.09345 USDT
+            1 $PINKINU <span className="mx-2">=</span> 0.09345 USDT
           </p>
           <img src="images/icons/usdt.png" alt="" className="h-6 w-6" />
         </div>
@@ -64,7 +65,7 @@ const Buynow = () => {
           />
         </Box>
         <p className="my-1 text-[#f0749b]">Launch Price</p>
-        <p className="mb-4"> $LHINU = $0,2943453 USDT</p>
+        <p className="mb-4"> $PINKINU = $0,2943453 USDT</p>
         {!isConnected && (
           <button
             className=" mt-3 rounded-[50px] bg-[#f0749b] px-4 py-2 text-sm font-bold text-white"
@@ -88,7 +89,7 @@ const Buynow = () => {
               <img src="images/icons/bnb.svg" alt="" className="h-7 w-7" />
               <div className="w-full">
                 <p>
-                  Buy $LHINU with {chainId == ethereumChainId ? 'ETH' : 'BNB'}
+                  Buy $PINKINU with {chainId == ethereumChainId ? 'ETH' : 'BNB'}
                 </p>
               </div>
             </div>
@@ -98,10 +99,10 @@ const Buynow = () => {
             >
               <img src="images/icons/usdt.png" alt="" className="h-7 w-7" />
               <div className="w-full">
-                <p>Buy $LHINU with USDT</p>
+                <p>Buy $PINKINU with USDT</p>
               </div>
             </div>
-            <p className="my-3">Next Stage: $LHINU = 0.0342 USDT</p>
+            <p className="my-3">Next Stage: $PINKINU = 0.0342 USDT</p>
             <button
               className="rounded-3xl bg-[#f0749b] px-5 py-2 text-[#fff] hover:bg-[#ce4ec2]"
               onClick={() =>
