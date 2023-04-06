@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import style from './buynow.module.scss';
-
+import { useTranslation } from 'react-i18next';
 interface props {
   deadline: string;
 }
 
 const Timer = ({ deadline }: props) => {
+  const { t } = useTranslation();
   const [days, setDays] = useState<number | string>(0);
   const [hours, setHours] = useState<number | string>(0);
   const [minutes, setMinutes] = useState<number | string>(0);
@@ -61,25 +62,25 @@ const Timer = ({ deadline }: props) => {
         className={`${style.boxTimer} flex flex-col items-center justify-center`}
       >
         <p className="text-3xl">{days}</p>
-        <p className="text-sm ">Days</p>
+        <p className="text-sm ">{t('timer.days')}</p>
       </div>
       <div
         className={`${style.boxTimer} flex flex-col items-center justify-center`}
       >
         <p className="text-3xl">{hours}</p>
-        <p className="text-sm ">Hours</p>
+        <p className="text-sm ">{t('timer.hours')}</p>
       </div>
       <div
         className={`${style.boxTimer} flex flex-col items-center justify-center`}
       >
         <p className="text-3xl">{minutes}</p>
-        <p className="text-sm ">Min</p>
+        <p className="text-sm ">{t('timer.minutes')}</p>
       </div>
       <div
         className={`${style.boxTimer} flex flex-col items-center justify-center`}
       >
         <p className="text-3xl">{seconds}</p>
-        <p className="text-sm ">Sec</p>
+        <p className="text-sm ">{t('timer.seconds')}</p>
       </div>
     </div>
   );

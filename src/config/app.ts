@@ -18,8 +18,7 @@ export const APP_CONFIG = {
       process.env.REACT_APP_PREFIX_SIGNATURE ||
       `I am going to sign my PinkInu AI:`,
     prefixNonce:
-      process.env.REACT_APP_PREFIX_NONCE ||
-      `I am going to sign my PinkInu AI:`,
+      process.env.REACT_APP_PREFIX_NONCE || `I am going to sign my PinkInu AI:`,
   },
   socket: {
     url: process.env.REACT_APP_SOCKET_URL,
@@ -39,7 +38,7 @@ export const CONSTANTS = {
   TIMING_BANNER_KEY: 'timingBanner',
 };
 
-export const OWN_TOKEN = 'PINKINU';
+export const OWN_TOKEN = '$PINKINU';
 export const FIRST_TOKEN = 'ETH';
 export const SECOND_TOKEN = 'BNB';
 export const THIRD_TOKEN = 'USDT';

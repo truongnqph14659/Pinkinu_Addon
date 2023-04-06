@@ -5,13 +5,21 @@ import style from './buynow.module.scss';
 import { useConnectWallet, useModal } from 'src/hooks';
 import ExchangeForm from './ExchangeForm';
 import { useEffect } from 'react';
-import { APP_CONFIG, FIRST_TOKEN, SECOND_TOKEN } from 'src/config';
+import {
+  APP_CONFIG,
+  FIRST_TOKEN,
+  OWN_TOKEN,
+  SECOND_TOKEN,
+  THIRD_TOKEN,
+} from 'src/config';
 import { isValidNetwork } from 'src/utils';
+import { useTranslation } from 'react-i18next';
 
 const deadline = 'April, 8, 2023';
 const secondChainId = APP_CONFIG.blockchain.secondChainId;
 
 const Buynow = () => {
+  const { t } = useTranslation();
   const { showModal } = useModal();
   const { isConnected, connect, switchNetworks, chainId } = useConnectWallet();
 
@@ -31,16 +39,16 @@ const Buynow = () => {
             className="h-6 w-6"
           />
           <p className="font-bold">
-            1 $PINKINU <span className="mx-2">=</span> 0.09345 USDT
+            1 {OWN_TOKEN} <span className="mx-2">=</span> 0.09345 {THIRD_TOKEN}
           </p>
           <img src="images/icons/usdt.png" alt="" className="h-6 w-6" />
         </div>
         <p className="my-5">
-          USDT Raised $2,598,184.43 <span className="px-1">/</span>
+          {t('usdt_raised')} $2,598,184.43 <span className="px-1">/</span>
           $3,037,500
         </p>
         <Timer deadline={deadline} />
-        <p className="my-3">Until Price Increase To $0.000150</p>
+        <p className="my-3">{t('until_price_increase_to')} $0.000150</p>
         <Box>
           <Slider
             sx={{
@@ -63,14 +71,16 @@ const Buynow = () => {
             disabled={true}
           />
         </Box>
-        <p className="my-1 text-[#f0749b]">Launch Price</p>
-        <p className="mb-4"> $PINKINU = $0,2943453 USDT</p>
+        <p className="my-1 text-[#f0749b]">{t('launch_price')}</p>
+        <p className="mb-4">
+          {OWN_TOKEN} = $0,2943453 {THIRD_TOKEN}
+        </p>
         {!isConnected && (
           <button
             className=" mt-3 rounded-[50px] bg-[#f0749b] px-4 py-2 text-sm font-bold text-white"
             onClick={connect}
           >
-            BUY NOW
+            {t('buy_now')}
           </button>
         )}
         {isConnected && (
@@ -98,7 +108,8 @@ const Buynow = () => {
               />
               <div className="w-full">
                 <p>
-                  Buy $PINKINU with {chainId === secondChainId ? SECOND_TOKEN : FIRST_TOKEN}
+                  {t('buy_$PINKINU_with')}
+                  {chainId === secondChainId ? SECOND_TOKEN : FIRST_TOKEN}
                 </p>
               </div>
             </div>
@@ -118,10 +129,12 @@ const Buynow = () => {
             >
               <img src="images/icons/usdt.png" alt="" className="h-7 w-7" />
               <div className="w-full">
-                <p>Buy $PINKINU with USDT</p>
+                <p>{t('buy_$PINKINU_with_usdt')}</p>
               </div>
             </div>
-            <p className="my-3">Next Stage: $PINKINU = 0.0342 USDT</p>
+            <p className="my-3">
+              {t('next_stage')} {OWN_TOKEN} = 0.0342 {THIRD_TOKEN}
+            </p>
             <button
               className="rounded-3xl bg-[#f0749b] px-5 py-2 text-[#fff] hover:bg-[#ce4ec2]"
               onClick={() =>
@@ -132,7 +145,8 @@ const Buynow = () => {
                 )
               }
             >
-              Buy with {chainId === secondChainId ? FIRST_TOKEN : SECOND_TOKEN}
+              {t('buy_with')}
+              {chainId === secondChainId ? FIRST_TOKEN : SECOND_TOKEN}
             </button>
           </div>
         )}

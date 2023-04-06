@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Select, FormControl, MenuItem, Box } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useConnectWallet } from 'src/hooks';
+import { FIRST_TOKEN, OWN_TOKEN } from 'src/config';
+import { useTranslation } from 'react-i18next';
 
 const dataCoins = [
   {
@@ -19,6 +21,7 @@ const dataCoins = [
 const ExchangeForm = () => {
   const { getAccount, getBalance, isConnected, chainId } = useConnectWallet();
   const [balance, setBalance] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (isConnected) {
@@ -28,7 +31,7 @@ const ExchangeForm = () => {
     }
   }, [chainId]);
 
-  const [coinSelected, setCoinSelected] = useState('ETH');
+  const [coinSelected, setCoinSelected] = useState(FIRST_TOKEN);
 
   const getCoin = e => {
     setCoinSelected(e);
@@ -49,11 +52,11 @@ const ExchangeForm = () => {
       <div className="flex items-center justify-center gap-2 border-b-2 border-[#f0749b] px-3 pb-4 md:gap-6">
         <img src="images/icons/eth-logo.png" alt="" className="h-6 w-6" />
         <p className="text-xs font-bold text-black sm:text-lg">
-          ETH balance: <span>{balance}</span>
+          {coinSelected} {t('balance')} <span>{balance}</span>
         </p>
       </div>
       <div className="flex items-center justify-between">
-        <p className="my-2 text-[18px] font-bold text-black">Amount</p>
+        <p className="my-2 text-[18px] font-bold text-black">{t('amount')}</p>
         <div>
           <Box sx={{ minWidth: { xs: '40%', md: '50%' } }}>
             <FormControl className="" size="small">
@@ -116,21 +119,21 @@ const ExchangeForm = () => {
           />
         </div>
         <button className="rounded-md bg-[#f0749b] px-2 font-bold text-white hover:bg-[#FF1C7B] md:px-3">
-          MAX
+          {t('max')}
         </button>
       </div>
       <p className="py-2 text-sm text-[#FF1C7B] md:text-base">
-        You do not have enough ETH to pay for this transaction
+        You do not have enough {coinSelected} to pay for this transaction
       </p>
       <div className="flex items-center justify-between">
-        <p className="my-2 text-[18px] font-bold text-black">Buying</p>
+        <p className="my-2 text-[18px] font-bold text-black">{t('buying')}</p>
         <div className="flex gap-x-2">
           <img
             src="images/icons/icon-token-pinkinu.png"
             alt=""
             className="h-6 w-6"
           />
-          <p className="font-bold text-black">$PINKINU</p>
+          <p className="font-bold text-black">{OWN_TOKEN}</p>
         </div>
       </div>
       <input
@@ -139,11 +142,9 @@ const ExchangeForm = () => {
         className=" w-full rounded-[5px] bg-[#F6F6F6] py-3 pl-[11px] pr-7 font-bold text-black  placeholder:text-black focus:outline-none md:py-3.5 md:text-[18px]"
         disabled
       />
-      <p className="py-2 text-sm text-[#FF1C7B] md:text-base">
-        You do not have enough ETH to pay for this transaction
-      </p>
-      <button className="mb-3 mt-4 w-full rounded-3xl bg-[#f0749b] py-2 font-bold">
-        Convert ETH
+      <button className="mb-3 mt-4 w-full rounded-3xl bg-[#f0749b] py-2 font-bold hover:bg-[#FF1C7B]">
+        {t('convert')}
+        {coinSelected}
       </button>
     </div>
   );
