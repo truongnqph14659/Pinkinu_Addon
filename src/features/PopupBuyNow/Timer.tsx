@@ -3,14 +3,15 @@ import style from './buynow.module.scss';
 import { useTranslation } from 'react-i18next';
 interface props {
   deadline: string;
+  checkTime: (isValid: boolean) => void;
 }
 
-const Timer = ({ deadline }: props) => {
+const Timer = ({ deadline, checkTime }: props) => {
   const { t } = useTranslation();
-  const [days, setDays] = useState<number | string>(0);
-  const [hours, setHours] = useState<number | string>(0);
-  const [minutes, setMinutes] = useState<number | string>(0);
-  const [seconds, setSeconds] = useState<number | string>(0);
+  const [days, setDays] = useState<number | string>('00');
+  const [hours, setHours] = useState<number | string>('00');
+  const [minutes, setMinutes] = useState<number | string>('00');
+  const [seconds, setSeconds] = useState<number | string>('00');
 
   const getTime = (deadline: string) => {
     const time = Date.parse(deadline) - Date.now();
@@ -20,12 +21,12 @@ const Timer = ({ deadline }: props) => {
   useEffect(() => {
     const interval = setInterval(() => {
       const time = getTime(deadline);
-
       if (time < 0) {
         setDays('00');
         setHours('00');
         setMinutes('00');
         setSeconds('00');
+        checkTime(false);
         clearInterval(interval);
       } else {
         setDays(

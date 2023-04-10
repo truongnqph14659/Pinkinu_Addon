@@ -169,5 +169,6 @@
   "amount": "Amount",
   "buying": "Buying",
   "convert": "Convert ",
-  "max": "MAX"
+  "max": "MAX",
+  "message_asking": "Are you ready to walk on the MOON?"
 }
