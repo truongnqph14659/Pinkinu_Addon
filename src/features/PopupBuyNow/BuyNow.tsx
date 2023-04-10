@@ -4,7 +4,7 @@ import Timer from './Timer';
 import style from './buynow.module.scss';
 import { useConnectWallet, useModal } from 'src/hooks';
 import ExchangeForm from './ExchangeForm';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   APP_CONFIG,
   FIRST_TOKEN,
@@ -15,13 +15,15 @@ import {
 import { isValidNetwork } from 'src/utils';
 import { useTranslation } from 'react-i18next';
 
-const deadline = 'April, 8, 2023';
+const deadline = 'April, 10, 2023';
+
 const secondChainId = APP_CONFIG.blockchain.secondChainId;
 
 const BuyNow = () => {
   const { t } = useTranslation();
   const { showModal } = useModal();
   const { isConnected, connect, switchNetworks, chainId } = useConnectWallet();
+  const [isInvalidTime, setIsInvalidTime] = useState<boolean>(true);
 
   useEffect(() => {
     if (isConnected && !isValidNetwork(chainId)) window.location.reload();
@@ -43,42 +45,54 @@ const BuyNow = () => {
           </p>
           <img src="images/icons/usdt.png" alt="" className="h-6 w-6" />
         </div>
-        <p className="my-5">
-          {t('usdt_raised')} $2,598,184.43 <span className="px-1">/</span>
-          $3,037,500
-        </p>
-        <Timer deadline={deadline} />
-        <p className="my-3">{t('until_price_increase_to')} $0.000150</p>
-        <Box>
-          <Slider
-            sx={{
-              '& .MuiSlider-thumb': {
-                display: 'none',
-              },
-              '&:disabled .MuiSlider-thumb': {
-                display: 'none',
-              },
-              '& .MuiSlider-rail': {
-                padding: '10px',
-              },
-              '& .MuiSlider-track': {
-                padding: '9px',
-                color: '#f0749b',
-              },
-            }}
-            defaultValue={6}
-            max={10}
-            disabled={true}
-          />
-        </Box>
+        {isInvalidTime || (
+          <p className="my-5">
+            {t('usdt_raised')} $2,598,184.43 <span className="px-1">/</span>
+            $3,037,500
+          </p>
+        )}
+        {isInvalidTime && <p className="my-5">{t('message_asking')}</p>}
+
+        <Timer deadline={deadline} checkTime={setIsInvalidTime} />
+        {isInvalidTime || (
+          <>
+            <p className="my-3">{t('until_price_increase_to')} $0.000150</p>
+            <Box>
+              <Slider
+                sx={{
+                  '& .MuiSlider-thumb': {
+                    display: 'none',
+                  },
+                  '&:disabled .MuiSlider-thumb': {
+                    display: 'none',
+                  },
+                  '& .MuiSlider-rail': {
+                    padding: '10px',
+                  },
+                  '& .MuiSlider-track': {
+                    padding: '9px',
+                    color: '#f0749b',
+                  },
+                }}
+                defaultValue={6}
+                max={10}
+                disabled={true}
+              />
+            </Box>
+          </>
+        )}
+
         <p className="my-1 text-[#f0749b]">{t('launch_price')}</p>
         <p className="mb-4">
           {OWN_TOKEN} = $0,2943453 {THIRD_TOKEN}
         </p>
         {!isConnected && (
           <button
-            className=" mt-3 rounded-[50px] bg-[#f0749b] px-4 py-2 text-sm font-bold text-white"
+            className={`${
+              isInvalidTime ? 'bg-[#4e4246] ' : 'bg-[#f0749b] '
+            } mt-3 rounded-[50px] px-4 py-2 text-sm font-bold text-white`}
             onClick={connect}
+            disabled={isInvalidTime}
           >
             {t('buy_now')}
           </button>
