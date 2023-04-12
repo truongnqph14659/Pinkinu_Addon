@@ -2,7 +2,6 @@ import React from 'react';
 
 const StakingPool = () => {
   return (
-    <>
       <div className="max-w-[350px] rounded-lg border-[1px] border-black bg-[#000000]">
         <div
           className="relative h-[80px] rounded-t-lg"
@@ -60,7 +59,6 @@ const StakingPool = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 
