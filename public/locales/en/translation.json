@@ -157,6 +157,57 @@
     "minutes": "Min",
     "seconds": "Sec"
   },
+  "days" : "{{day}} Days",
+  "pinkinu" : "PINKINU",
+  "reward_pool": "Reward Pool: {{percent}}% of Stake Tax",
+  "enter_amount_to_stake": "Enter amount to stake",
+  "stake_lp": "Stake",
+  "farming" : {
+    "lp_farming":"LP Farming",
+    "pool" : {
+      "14_day" : "14 Days",
+      "reward_pool" : "Reward Pool: 35% of Stake Tax",
+      "currently_staked":"Currently staked",
+      "rewards_unclaimed" : "Rewards claimed",
+      "total_staked":"Total staked",
+      "total_withdrawn" : "Total withdrawn",
+      "enter_amount_to_stake" : "Enter amount to stake",
+      "balance" : "Balance",
+      "stake_lp" : "Stake LP",
+      "lp" : "LP"
+    },
+    "personal": {
+      "#" : "#",
+      "stake_lp" : "STAKED LP",
+      "rewards_unclaimed" : "REWARDS UNCLAIMED",
+      "start_time" : "START TIME",
+      "rewards_claimed" : "REWARDS CLAIMED",
+      "actions" : "ACTIONS"
+    },
+    "you_have_not_staked_any_LP_yet" : "You have not staked any LP yet",
+    "get_lp_tokens_by_providing" : "Get LP tokens by providing liquidity here"
+  },
+
+  "staking" : {
+    "pool" : {
+      "stakers":"Stakers",
+      "staked_arbinu" : "Staked Arbinu",
+      "rewards_claimed" : "Rewards claimed"
+    },
+    "personal":{
+      "#" : "#",
+      "staked":"STAKED",
+      "total_stakers" : "Total stakers: {{number}}",
+      "total_staked":"Total staked: {{total}} Arbinu or {{percent}}% of supply",
+      "rewards_total":"REWARDS TOTAL",
+      "rewards_harvested":"REWARDS HARVESTED",
+      "lock_period":"LOCK PERIOD",
+      "unlock_time":"UNLOCK TIME",
+      "actions":"ACTIONS",
+      "you_have_not_staked_any": "You have not staked any",
+      "yet" : "yet"
+    }
+  },
   "usdt_raised": "USDT Raised ",
   "until_price_increase_to": "Until Price Increase To ",
   "launch_price": "Launch Price",
@@ -165,7 +216,7 @@
   "buy_pinkInu_with_usdt": "Buy $PINKINU with USDT",
   "next_stage": "Next Stage: ",
   "buy_pinkInu_with": "Buy $PINKINU with ",
-  "balance": " balance: ",
+  "balance": " Balance: ",
   "amount": "Amount",
   "buying": "Buying",
   "convert": "Convert ",

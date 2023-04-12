@@ -33,12 +33,12 @@ export const routes: RouteObject[] = [
             ],
           },
           {
-            path: 'lp-framing',
+            path: 'lp-farming',
             element: <Farming />,
             children: [
               {
                 path: '',
-                element: <Navigate to="/general/lp-framing/pool" replace />,
+                element: <Navigate to="/general/lp-farming/pool" replace />,
               },
               { path: 'pool', element: <FarmingPool /> },
               { path: 'personal', element: <FarmingPersonal /> },
