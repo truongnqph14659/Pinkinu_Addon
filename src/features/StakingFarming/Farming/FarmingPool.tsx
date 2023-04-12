@@ -1,11 +1,8 @@
-
+import style from '../stake.module.scss';
 const FarmingPool = () => {
   return (
-    <div className="mx-auto max-w-[350px] rounded-lg border border-black bg-[#000000] ">
-      <div
-        className="relative h-[80px] rounded-t-lg"
-        style={{ backgroundImage: `url('/images/general/bg-image-stake.jpg')` }}
-      >
+    <div className="mx-auto max-w-[350px] rounded-lg bg-[#000000] pb-2 ">
+      <div className={`relative min-h-[100px] ${style.header_box} `}>
         <div className="flex">
           <div className="mx-7 mt-5 basis-2/3 items-center">
             <div className="flex items-center gap-2">

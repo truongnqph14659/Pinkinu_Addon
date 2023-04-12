@@ -8,3 +8,10 @@
 .navbar {
   background: rgba(0, 0, 0, 0.2);
 }
+
+.header_box {
+  border: 1px solid #cd4f76;
+  border-width: 1px 1px 0 1px;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(to top right, #5a2637, #e87ea9);
+}
